@@ -1,10 +1,10 @@
 import {
   Routes, Route, BrowserRouter,
 } from 'react-router-dom';
-import NavBar from './components/navbar/Navbar.js';
-import Main from './components/main/main.js';
-import CountriesDetails from './components/main/CountriesDetails.js';
-import ErrorPage from './components/main/ErrorPage.js';
+import NavBar from './components/navbar/Navbar';
+import Main from './components/main/main';
+import CountriesDetails from './components/main/CountriesDetails';
+import ErrorPage from './components/main/ErrorPage';
 
 function App() {
   return (
