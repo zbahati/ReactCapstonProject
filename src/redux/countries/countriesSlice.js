@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 const initialState = {
   loading: false,
@@ -11,16 +10,18 @@ const initialState = {
 
 export const fetchCountries = createAsyncThunk('countries/fetchCountries', async () => {
   try {
-    const response = await axios.get('https://restcountries.com/v3.1/all');
-    return response.data;
+    const response = await fetch('https://restcountries.com/v3.1/all');
+    const result = await response.json();
+    return result;
   } catch (err) {
     throw err.response;
   }
 });
 
 export const fetchCountryDetails = createAsyncThunk('countries/fetchCountryDetails', async (code) => {
-  const response = await axios.get(`https://restcountries.com/v3.1/alpha/${code}`);
-  return response.data;
+  const response = await fetch(`https://restcountries.com/v3.1/alpha/${code}`);
+  const result = await response.json();
+  return result;
 });
 
 const countriesSlice = createSlice({
