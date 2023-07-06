@@ -25,7 +25,7 @@
 <!-- PROJECT DESCRIPTION -->
 
 # 📖 Countries App :Project: Countries application<a name="about-project"></a>
-The Foreign Currency BookStore is a React and Redux mobile application that utilizes data from the REST Countries API to display countries and their related data. With this app, users can explore various countries, view their currencies, and access detailed information on each country.
+Countries Data App is a React and Redux mobile application that utilizes data from the REST Countries API to display countries and their related data. With this app, users can explore various countries, view their currencies, and access detailed information on each country.
 
 
 ### Key Features <a name="key-features"></a>
@@ -60,7 +60,7 @@ The Foreign Currency BookStore is a React and Redux mobile application that util
 
 <!--Video-->
 ## Video Presentation <a name="video-presentation"></a>
-[Click Here for Video Presentation]()
+[Click Here for Video Presentation](https://www.loom.com/share/77a1f9fee9774cf6b8e0556fd4f3b866?sid=68d84436-5bd1-48e2-84ae-26b49a880e6a)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
