@@ -1,31 +1,35 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 const initialState = {
   loading: false,
   countriesData: [],
+  searchName: '',
   countryDetailsData: [],
   message: '',
 };
 
 export const fetchCountries = createAsyncThunk('countries/fetchCountries', async () => {
   try {
-    const response = await axios.get('https://restcountries.com/v3.1/all');
-    return response.data;
+    const response = await fetch('https://restcountries.com/v3.1/all');
+    const result = await response.json();
+    return result;
   } catch (err) {
     throw err.response;
   }
+});
+
+export const fetchCountryDetails = createAsyncThunk('countries/fetchCountryDetails', async (code) => {
+  const response = await fetch(`https://restcountries.com/v3.1/alpha/${code}`);
+  const result = await response.json();
+  return result;
 });
 
 const countriesSlice = createSlice({
   name: 'countries',
   initialState,
   reducers: {
-    reset: (state) => {
-      state.loading = false;
-      state.countriesData = [];
-      state.countryDetailsData = [];
-      state.message = '';
+    searchByTerm: (state, action) => {
+      state.searchName = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -42,9 +46,22 @@ const countriesSlice = createSlice({
       state.loading = false;
       state.countriesData = [];
     });
+    builder.addCase(fetchCountryDetails.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(fetchCountryDetails.fulfilled, (state, action) => {
+      state.loading = false;
+      state.countryDetailsData = action.payload;
+      state.message = '';
+    });
+    builder.addCase(fetchCountryDetails.rejected, (state, action) => {
+      state.loading = false;
+      state.countryDetailsData = [];
+      state.message = action.error;
+    });
   },
 
 });
 
 export default countriesSlice.reducer;
-export const { fetchCountriesAction } = countriesSlice.actions;
+export const { searchByTerm } = countriesSlice.actions;
